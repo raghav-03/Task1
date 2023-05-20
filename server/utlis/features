@@ -1,0 +1,28 @@
+class Fetures {
+  constructor(query, querystr) {
+    this.query = query;
+    this.querystr = querystr;
+  }
+  search() {
+    const keyword = this.querystr.keyword
+      ? {
+          imgName: {
+            $regex: this.querystr.keyword,
+            $options: "i",
+          },
+        }
+      : {};
+    this.query = this.query.find({ ...keyword });
+    return this;
+  }
+  pagination(perpageitem) {
+    // finding the value of page
+    let resultpage = Number(this.querystr.page) || 1;
+    // calculating how many result is to be skipped
+    let skip = perpageitem * (resultpage - 1);
+    this.query = this.query.limit(perpageitem).skip(skip);
+    return this;
+  }
+}
+
+module.exports = Fetures;
