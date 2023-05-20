@@ -1,8 +1,8 @@
   {
     "version": 2,
-    "name": "Task",
+    "name": "MERN TASK",
     "builds": [
-        { "src": "index.js", "use": "@now/node" }
+        { "src": "index.js", "use": "@vercel/node" }
     ],
     "routes": [
         { "src": "/(.*)", "dest": "index.js" }
